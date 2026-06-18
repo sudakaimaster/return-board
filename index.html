@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarah Ricketts is back in… | Return Board</title>
+<meta name="description" content="Counting down to Sarah Ricketts' return. All systems steady — we've got the controls.">
+
+<!-- Open Graph / Slack unfurl -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sarah Ricketts is back in…">
+<meta property="og:description" content="Live countdown to the boss's return. All systems steady — we've got the controls.">
+<meta property="og:image" content="https://image.thum.io/get/width/1200/crop/630/noanimate/wait/3/https://raw.githack.com/sudakaimaster/return-board/main/index.html">
+<meta property="og:url" content="https://raw.githack.com/sudakaimaster/return-board/main/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sarah Ricketts is back in…">
+<meta name="twitter:description" content="Live countdown to the boss's return.">
+<meta name="twitter:image" content="https://image.thum.io/get/width/1200/crop/630/noanimate/wait/3/https://raw.githack.com/sudakaimaster/return-board/main/index.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --blueberry:#00254A;--blueberry-90:#003567;--panel-edge:#0a4d86;
+    --tile:#001a37;--tile-top:#002a52;--super-blue:#236CFF;
+    --agave-30:#81F2FE;--agave-20:#C2F5FF;--muted:#8fb0d6;--wintermint:#EFF4F9;
+    --seam:rgba(0,0,0,.6);
+    --mono:"SF Mono",ui-monospace,"Cascadia Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --sans:"Avenir Next","Avenir Next LT Pro",Avenir,"Mulish","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{min-height:100%;background:#001127;}
+  .stage{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:32px 16px;font-family:var(--sans);}
+  .board{width:100%;max-width:640px;background:linear-gradient(180deg,var(--blueberry-90) 0%,var(--blueberry) 100%);
+    border:1px solid var(--panel-edge);border-radius:18px;overflow:hidden;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.05);}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;
+    background:rgba(0,0,0,.22);border-bottom:1px solid var(--panel-edge);}
+  .bar .brand{display:flex;align-items:center;gap:10px;}
+  .wordmark{font-weight:800;letter-spacing:-.02em;color:#fff;font-size:18px;line-height:1;text-transform:lowercase;}
+  .bar .brand .tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--agave-30);font-weight:700;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--agave-30);box-shadow:0 0 10px var(--agave-30);}
+  .bar .arrivals{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .head{padding:28px 22px 6px;text-align:center;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px;}
+  .title{font-size:clamp(22px,5.2vw,32px);line-height:1.15;color:#fff;font-weight:800;letter-spacing:-.01em;}
+  .title .who{color:var(--agave-20);}
+  .counter{display:flex;align-items:flex-start;justify-content:center;gap:clamp(6px,2vw,12px);padding:26px 14px 12px;flex-wrap:nowrap;}
+  .unit{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .pair{display:flex;gap:5px;}
+  .tile{position:relative;width:clamp(34px,9vw,54px);height:clamp(48px,12.5vw,74px);
+    background:linear-gradient(180deg,var(--tile-top) 0%,var(--tile) 52%,#000a1c 100%);
+    border-radius:8px;border:1px solid #000;display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:clamp(26px,7vw,44px);font-weight:600;color:var(--agave-30);
+    text-shadow:0 0 14px rgba(129,242,254,.35);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07), inset 0 -8px 14px rgba(0,0,0,.5);transform-origin:center top;}
+  .tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--seam);
+    transform:translateY(-1px);box-shadow:0 1px 0 rgba(255,255,255,.05);}
+  .tile.flip{animation:flip .42s ease;}
+  @keyframes flip{0%{transform:scaleY(1);}45%{transform:scaleY(.82) translateY(-1px);}70%{transform:scaleY(1.04);}100%{transform:scaleY(1);}}
+  .label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .sep{align-self:flex-start;font-family:var(--mono);font-size:clamp(26px,7vw,44px);color:var(--super-blue);
+    line-height:clamp(48px,12.5vw,74px);font-weight:600;opacity:.8;}
+  .strip{margin:8px 16px 18px;border-top:1px dashed var(--panel-edge);padding-top:16px;text-align:center;}
+  .meta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;font-size:12px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px;}
+  .meta .ok{color:var(--agave-30);}
+  .meta .arr{color:var(--agave-20);}
+  .pip{color:var(--super-blue);opacity:.6;}
+  .status{font-size:clamp(13px,3.4vw,15px);color:var(--wintermint);font-weight:600;line-height:1.4;}
+  .foot{padding:12px 20px;background:rgba(0,0,0,.22);border-top:1px solid var(--panel-edge);text-align:center;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  @media (prefers-reduced-motion:reduce){.tile.flip{animation:none;}.dot{box-shadow:none;}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="board">
+    <div class="bar">
+      <span class="brand"><span class="dot"></span><span class="wordmark">intuit</span><span class="tag">Return Board</span></span>
+      <span class="arrivals">Arrivals</span>
+    </div>
+    <div class="head">
+      <div class="eyebrow">Counting down to</div>
+      <div class="title"><span class="who" id="who">Sarah Ricketts</span> is back in</div>
+    </div>
+    <div class="counter" id="counter">
+      <div class="unit"><div class="pair"><div class="tile" id="d0">0</div><div class="tile" id="d1">0</div></div><span class="label">Days</span></div>
+      <span class="sep">:</span>
+      <div class="unit"><div class="pair"><div class="tile" id="h0">0</div><div class="tile" id="h1">0</div></div><span class="label">Hours</span></div>
+      <span class="sep">:</span>
+      <div class="unit"><div class="pair"><div class="tile" id="m0">0</div><div class="tile" id="m1">0</div></div><span class="label">Min</span></div>
+      <span class="sep">:</span>
+      <div class="unit"><div class="pair"><div class="tile" id="s0">0</div><div class="tile" id="s1">0</div></div><span class="label">Sec</span></div>
+    </div>
+    <div class="strip">
+      <div class="meta">
+        <span>Flight <span class="arr" id="flightno">RTN-720</span></span>
+        <span class="pip">&bull;</span>
+        <span>Status <span class="ok" id="statusword">On time</span></span>
+        <span class="pip">&bull;</span>
+        <span>Arriving <span class="arr" id="arrdate">Jul 20</span></span>
+      </div>
+      <div class="status" id="status">All systems steady. We've got the controls.</div>
+    </div>
+    <div class="foot" id="foot">Now boarding patience &middot; gate B</div>
+  </div>
+</div>
+<script>
+  const NAME   = "Sarah Ricketts";
+  const RETURN = new Date(2026, 6, 20, 9, 0, 0);
+  document.getElementById("who").textContent = NAME;
+  document.getElementById("arrdate").textContent = RETURN.toLocaleDateString(undefined, {month:"short", day:"numeric"});
+  const ids = ["d0","d1","h0","h1","m0","m1","s0","s1"];
+  const el = {}; ids.forEach(i => el[i] = document.getElementById(i));
+  const prev = {}; ids.forEach(i => prev[i] = el[i].textContent);
+  function setTile(id, val){ if(prev[id] !== val){ el[id].textContent = val; el[id].classList.remove("flip"); void el[id].offsetWidth; el[id].classList.add("flip"); prev[id] = val; } }
+  const two = n => String(n).padStart(2,"0");
+  function statusFor(days, totalMs){
+    if(totalMs <= 0) return "Welcome back — the board is clear.";
+    if(days > 30)    return "Plenty of runway. We've got the controls.";
+    if(days >= 8)    return "Cruising altitude. All systems steady.";
+    if(days >= 2)    return "Beginning our descent. Tidy up the desks.";
+    if(days >= 1)    return "Final approach. Coffee on standby.";
+    return "On final — wheels down any minute now.";
+  }
+  function tick(){
+    const now = new Date(); let diff = RETURN - now;
+    if(diff <= 0){
+      ids.forEach(i => setTile(i,"0"));
+      document.getElementById("statusword").textContent = "Arrived";
+      document.getElementById("statusword").style.color = "var(--agave-20)";
+      document.getElementById("status").textContent = statusFor(0,0);
+      document.getElementById("foot").textContent = "Welcome back · gate closed"; return;
+    }
+    const s = Math.floor(diff/1000), days = Math.floor(s/86400), hrs = Math.floor((s%86400)/3600), min = Math.floor((s%3600)/60), sec = s%60;
+    const dd = two(days);
+    setTile("d0", dd.length>2 ? dd[dd.length-2] : dd[0]); setTile("d1", dd[dd.length-1]);
+    setTile("h0", two(hrs)[0]); setTile("h1", two(hrs)[1]);
+    setTile("m0", two(min)[0]); setTile("m1", two(min)[1]);
+    setTile("s0", two(sec)[0]); setTile("s1", two(sec)[1]);
+    document.getElementById("status").textContent = statusFor(days, diff);
+    document.getElementById("foot").textContent = days >= 1 ? "Now boarding patience · gate B" : "Final boarding call · gate B";
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
