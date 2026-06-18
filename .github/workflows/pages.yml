@@ -1,7 +1,8 @@
+# Optional: only used if you set Pages source to "GitHub Actions".
+# By default the site is served via "Deploy from a branch" (no Actions needed).
+# Run manually from the Actions tab if you switch the source to GitHub Actions.
 name: Deploy to GitHub Pages
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
